@@ -25,6 +25,8 @@ module.exports = {
     ignorePatterns: ['src/assets'],
     plugins: ['react', 'react-hooks', '@typescript-eslint', 'import', 'unused-imports'],
     rules: {
+      'object-curly-newline': 'off',
+      'implicit-arrow-linebreak': 'off',
       
       'no-console': 'off',
       // https://stackoverflow.com/questions/63818415/react-was-used-before-it-was-defined/64024916#64024916

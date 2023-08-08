@@ -1,6 +1,6 @@
 import React from 'react';
 
-import AppRouter from './providers/router/AppRouter';
+import { AppRouter } from './providers/router';
 
 function App() {
   return (

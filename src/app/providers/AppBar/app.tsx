@@ -4,9 +4,12 @@ import { Button, CircularProgress } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers';
 import { ErrorBoundary } from 'react-error-boundary';
 import { HelmetProvider } from 'react-helmet-async';
+import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
+import { PersistGate } from 'redux-persist/integration/react';
 
-import ThemeProvider from '~/theme';
+import ThemeProvider from '~/app/styles';
+import { store, persister } from '~/store';
 
 function ErrorFallback() {
   return (
@@ -32,11 +35,15 @@ export function AppProvider({ children }: AppProviderProps) {
     >
       <BrowserRouter>
         <ErrorBoundary FallbackComponent={ErrorFallback}>
-          <HelmetProvider>
-            <LocalizationProvider>
-              <ThemeProvider>{children}</ThemeProvider>
-            </LocalizationProvider>
-          </HelmetProvider>
+          <Provider store={store}>
+            <PersistGate loading={<CircularProgress />} persistor={persister}>
+              <HelmetProvider>
+                <LocalizationProvider>
+                  <ThemeProvider>{children}</ThemeProvider>
+                </LocalizationProvider>
+              </HelmetProvider>
+            </PersistGate>
+          </Provider>
         </ErrorBoundary>
       </BrowserRouter>
     </React.Suspense>
