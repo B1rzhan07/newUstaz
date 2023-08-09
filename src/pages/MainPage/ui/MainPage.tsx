@@ -1,7 +1,9 @@
 import React from 'react';
 
+import { Page } from '~/shared/Page';
+
 function MainPage() {
-  return <div>MainPage</div>;
+  return <Page title="Main">fwefwe</Page>;
 }
 
 export default MainPage;
