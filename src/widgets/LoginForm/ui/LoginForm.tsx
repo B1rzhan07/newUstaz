@@ -9,6 +9,8 @@ import * as Yup from 'yup';
 
 import authApi from '~/api/auth/api';
 import { FormProvider } from '~/app/providers/Form';
+import { setUser } from '~/feautures/auth/authSlice';
+import { useAppDispatch } from '~/store';
 import { RHFTextField } from '~/widgets/TextField/RHFTextField';
 
 type FormValuesProps = {
@@ -40,10 +42,11 @@ export function LoginForm() {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = methods;
-
+  const dispatch = useAppDispatch();
   const onSubmit = async (data: FormValuesProps) => {
     try {
-      await login(data).unwrap();
+      const response = await login(data).unwrap();
+      dispatch(setUser(response));
       navigate('/');
     } catch (error: unknown) {
       setError('username', { message: 'Wrong credentials', type: 'custom' });

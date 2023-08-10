@@ -13,9 +13,19 @@ import { store, persister } from '~/store';
 
 function ErrorFallback() {
   return (
-    <div>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100vh',
+      }}
+    >
       <h2>Ooops, something went wrong :( </h2>
-      <Button onClick={() => window.location.assign(window.location.origin)}>Refresh</Button>
+      <Button variant="contained" onClick={() => window.location.assign(window.location.origin)}>
+        Refresh
+      </Button>
     </div>
   );
 }
@@ -34,17 +44,17 @@ export function AppProvider({ children }: AppProviderProps) {
       }
     >
       <BrowserRouter>
-        <ErrorBoundary FallbackComponent={ErrorFallback}>
-          <Provider store={store}>
-            <PersistGate loading={<CircularProgress />} persistor={persister}>
-              <HelmetProvider>
-                <LocalizationProvider>
-                  <ThemeProvider>{children}</ThemeProvider>
-                </LocalizationProvider>
-              </HelmetProvider>
-            </PersistGate>
-          </Provider>
-        </ErrorBoundary>
+        <Provider store={store}>
+          <PersistGate loading={<CircularProgress />} persistor={persister}>
+            <HelmetProvider>
+              <LocalizationProvider>
+                <ThemeProvider>
+                  <ErrorBoundary FallbackComponent={ErrorFallback}>{children}</ErrorBoundary>
+                </ThemeProvider>
+              </LocalizationProvider>
+            </HelmetProvider>
+          </PersistGate>
+        </Provider>
       </BrowserRouter>
     </React.Suspense>
   );

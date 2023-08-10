@@ -3,26 +3,35 @@ import React from 'react';
 import { Box, styled } from '@mui/material';
 
 import main from '~/assets/Img/alma.jpg';
+import HomePageLayout from '~/pages/MainPage/ui/HomePage';
+import { Page } from '~/shared/Page';
 import { LoginForm } from '~/widgets/LoginForm';
 
 export function LoginPage() {
   return (
-    <BoxContainerStyle>
-      <BoxStyle>
-        <LoginForm />
-      </BoxStyle>
-      <Box sx={{ alignSelf: 'center' }}>
-        <ImageStyle src={main} alt="details" />
-      </Box>
-    </BoxContainerStyle>
+    <HomePageLayout>
+      <Page title="Login Page">
+        <BoxContainerStyle>
+          <BoxStyle>
+            <LoginForm />
+          </BoxStyle>
+          <Box sx={{ alignSelf: 'center' }}>
+            <ImageStyle src={main} alt="details" />
+          </Box>
+        </BoxContainerStyle>
+      </Page>
+    </HomePageLayout>
   );
 }
 
 const BoxContainerStyle = styled(Box)(({ theme }) => ({
   display: 'grid',
+  position: 'relative',
+  width: '100%',
+  justifyContent: 'center',
   gridTemplateColumns: 'repeat(2, 1fr)',
   paddingTop: theme.spacing(10),
-  gap: theme.spacing(6),
+  gap: theme.spacing(4),
   [theme.breakpoints.down(670)]: {
     display: 'flex',
     flexDirection: 'column-reverse',

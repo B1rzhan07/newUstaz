@@ -8,6 +8,7 @@ import type { AuthState } from './types';
 
 const initialState: AuthState = {
   isLoggedIn: false,
+  user: null,
 };
 
 export const authSlice = createSlice({
@@ -16,6 +17,10 @@ export const authSlice = createSlice({
   reducers: {
     logout(state) {
       state.isLoggedIn = false;
+      state.user = null;
+    },
+    setUser(state, action) {
+      state.user = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -25,7 +30,7 @@ export const authSlice = createSlice({
   },
 });
 
-export const { logout } = authSlice.actions;
+export const { logout, setUser } = authSlice.actions;
 
 export const authReducer = persistReducer(
   {

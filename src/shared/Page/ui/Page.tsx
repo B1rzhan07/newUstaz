@@ -4,7 +4,6 @@ import { Box } from '@mui/material';
 import { Helmet } from 'react-helmet-async';
 
 import { APPLICATION_NAME } from '~/config/apiConfig';
-import Navbar from '~/widgets/Navbar/ui/Navbar';
 
 type Props = {
   children: React.ReactNode;
@@ -21,10 +20,7 @@ export function Page({ children, meta, title }: Props) {
         <style>{'body { background-color: #F4F6F8; }'}</style>
       </Helmet>
 
-      <Box height="100%">
-        <Navbar />
-        {children}
-      </Box>
+      <Box height="100%">{children}</Box>
     </>
   );
 }
