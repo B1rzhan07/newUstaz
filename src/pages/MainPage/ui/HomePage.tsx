@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { Box, Container, styled } from '@mui/material';
-import { Outlet } from 'react-router-dom';
 
 import { Navbar } from '~/widgets/Navbar';
 
@@ -13,7 +12,7 @@ export default function HomePageLayout({ children }: Props) {
   return (
     <BoxStyle>
       <Navbar />
-      <MainStyle>{children || <Outlet />}</MainStyle>
+      <MainStyle>{children}</MainStyle>
     </BoxStyle>
   );
 }
