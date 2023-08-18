@@ -11,7 +11,7 @@ import authApi from '~/api/auth/api';
 import { FormProvider } from '~/app/providers/Form';
 import { setUser } from '~/feautures/auth/authSlice';
 import { useAppDispatch } from '~/store';
-import { RHFTextField } from '~/widgets/TextField/RHFTextField';
+import { RHFTextField } from '~/widgets/components/TextField/RHFTextField';
 
 type FormValuesProps = {
   username: string;
